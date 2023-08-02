@@ -2,6 +2,7 @@ class Solution {
 public:
     int romanToInt(string s) {
         int ans =0;
+        int prev=0;
         unordered_map<char , int> mpp;
         mpp['M'] = 1000;
         mpp['D'] = 500;
@@ -11,22 +12,16 @@ public:
         mpp['V'] = 5;
         mpp['I'] = 1;
 
-        int n = s.size();
-        int i;
-        for(i =0;i<n-1;i++){
-            bool candi = true;
-            char s1 = s[i];  //x 
-            char s2 = s[i+1] ;// c
-            // mpp[s1] < mpp[s2] 
-           if (mpp[s1] <mpp[s2]){
-               ans -= mpp[s1];
-               candi = false;
-           }
-           if(mpp.count(s1) && candi){
-               ans += mpp[s1] ;
-           }
+        for(int i=s.length()-1;i>=0; i--){
+            char current=s[i];
+            int value=mpp[current];
+            if(value>=prev){
+                ans+=value;
+            }else{
+                ans-=value;
+            }
+            prev=value;
         }
-        ans += mpp[s[i]];
         return ans;
     }
 };
