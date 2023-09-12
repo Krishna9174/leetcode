@@ -1,18 +1,26 @@
 class Solution {
 public:
-    int climbStairs(int n, map<int, int>& memo) {
-        if (n == 1 || n == 2) {
-            return n;
-        }
-        if (memo.find(n) == memo.end()) {
-            memo[n] = climbStairs(n-1, memo) + climbStairs(n-2, memo);
-        }
-        return memo[n];
-    }
-
+    
     int climbStairs(int n) {
-        if(n==0) return 1;
-        map<int, int> memo;
-        return climbStairs(n, memo);
+       
+int a=1;
+if(n==1) return 1;
+int b=2;
+for(int i=3; i<=n; i++){
+    int c=a+b;
+    a=b;
+    b=c;
+}
+return b;
     }
 };
+
+
+// int a=1;
+// int b=2;
+// for(int c=3; i<=n; i++){
+//     int c=a+b;
+//     a=b;
+//     b=c;
+// }
+// return b;
