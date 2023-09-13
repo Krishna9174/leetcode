@@ -11,19 +11,19 @@
  */
 class Solution {
 public:
-void check(TreeNode * root, vector<int> &ans){
-    if(root==NULL) return  ;
-    ans.push_back(root->val);
-    check(root->left, ans);
-    check(root->right, ans);
+void check(TreeNode * root,bool &flag, int value){
+  
+    if(root==NULL) return ;
+    if(root->val!=value) flag=false;
+ check(root->left,flag, value);
+ check(root->right,flag, value);
+   
 
 }
     bool isUnivalTree(TreeNode* root) {
-         vector<int> ans;
-        check(root, ans);
-        for(int i=1; i<ans.size(); i++){
-            if(ans[i]!=ans[i-1]) return false;
-        }
-        return true;
+        int value=root->val;
+        bool flag=true;
+        check(root,flag, value);
+        return flag;
     }
 };
