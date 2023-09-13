@@ -11,17 +11,14 @@
  */
 class Solution {
 public:
-void check(TreeNode*  root){
-   if(root==NULL) return;
-   TreeNode* temp=root->left; 
+
+    TreeNode* invertTree(TreeNode* root) {
+         if(root==NULL) return root;
+     TreeNode* temp=root->left; 
        root->left = root->right;
        root->right = temp;
-    check( root->left);
-    check( root->right);
-}
-    TreeNode* invertTree(TreeNode* root) {
-        if(root==NULL) return root;
-        check(root);
+    invertTree( root->left);
+    invertTree( root->right);
         return root;
     }
 };
